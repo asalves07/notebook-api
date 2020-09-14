@@ -28,6 +28,19 @@ namespace :dev do
     end
 
     puts 'Contatos cadastrados o sucesso...'
-  end
 
+    # Cadastrando telefone
+    puts 'Cadastrando os telefones...'
+
+    Contact.all.each do |contact|
+      rand(5).times do |i|
+        Phone.create!(
+          number:Faker::PhoneNumber.cell_phone,
+          contact: contact
+        )
+      end
+    end
+    puts 'Telefones cadastrados o sucesso...'
+    
+  end
 end

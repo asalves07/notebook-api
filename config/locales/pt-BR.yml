@@ -1,0 +1,6 @@
+"pt-BR":
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
