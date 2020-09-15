@@ -52,9 +52,9 @@ namespace :dev do
       Address.create!(
         street:Faker::Address.street_name,
         number:Faker::Address.building_number,
-        district:Faker::Address.state_abbr,
+        district:Faker::Address.community,
         city:Faker::Address.city,
-        uf:Faker::Address.state,
+        uf:Faker::Address.state_abbr,
         contact: contact,
         zip:Faker::Address.zip_code
       )
