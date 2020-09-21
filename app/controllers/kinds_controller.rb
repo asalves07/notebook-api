@@ -1,6 +1,8 @@
 class KindsController < ApplicationController
 
-  TOKEN = "secret123"
+  before_action :authenticate_user!
+
+  # TOKEN = "secret123"
 
   # include ActionController::HttpAuthentication::Basic::ControllerMethods
   # http_basic_authenticate_with name: "André", password: "secret"
@@ -8,9 +10,9 @@ class KindsController < ApplicationController
   # include ActionController::HttpAuthentication::Digest::ControllerMethods
   # USERS = {"Andre" => Digest::MD5.hexdigest(["André","Application","secret"].join(":"))}
 
-  include ActionController::HttpAuthentication::Token::ControllerMethods
+  # include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  before_action :authenticate
+  # before_action :authenticate
   before_action :set_kind, only: [:show, :update, :destroy]
 
   # GET /kinds
@@ -65,13 +67,13 @@ class KindsController < ApplicationController
       params.require(:kind).permit(:description)
     end
 
-    def authenticate
+    # def authenticate
       # authenticate_or_request_with_http_digest("Application") do |username|
       #   USERS[username]
       # end
-      ActiveSupport::SecurityUtils.secure_compare(
-        ::Digest::SHA256.hexdigest(token),
-        ::Digest::SHA256.hexdigest(TOKEN)
-      )
-    end
+      # ActiveSupport::SecurityUtils.secure_compare(
+      #   ::Digest::SHA256.hexdigest(token),
+      #   ::Digest::SHA256.hexdigest(TOKEN)
+      # )
+    # end
 end
