@@ -21,6 +21,7 @@ gem 'puma', '~> 4.1'
 gem 'jwt'
 gem 'devise_token_auth'
 gem 'devise-i18n'
+gem 'versionist'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

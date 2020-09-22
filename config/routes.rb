@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   resources :kinds
 
-  scope module: 'v1' do
-    resources :contacts, :constraints => lambda { |request| request.params[:version] == "1"} do
+  api_version(:module => "v1", :parameter => {:name => "version", :value => "1"}) do
+    resources :contacts do
       resource :kind, only: [:show]
       resource :kind, only: [:show], path: 'relationships/kind'
 
