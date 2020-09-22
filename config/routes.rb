@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :kinds
 
-  api_version(:module => "v1", :parameter => {:name => "version", :value => "1"}) do
+  api_version(:module => "v1", :header => {:name => "Accept", :value => "application/vnd.api+json; version=1"}) do
     resources :contacts do
       resource :kind, only: [:show]
       resource :kind, only: [:show], path: 'relationships/kind'
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
-  scope module: 'v2' do
-    resources :contacts, :constraints => lambda { |request| request.params[:version] == "2"} do
+  api_version(:module => "v2", :header => {:name => "Accept", :value => "application/vnd.api+json; version=2"}) do
+    resources :contacts do
       resource :kind, only: [:show]
       resource :kind, only: [:show], path: 'relationships/kind'
 
