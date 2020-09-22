@@ -22,6 +22,8 @@ gem 'jwt'
 gem 'devise_token_auth'
 gem 'devise-i18n'
 gem 'versionist'
+gem 'kaminari'
+#gem 'api-pagination'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
