@@ -1,5 +1,7 @@
 module V1
   class ContactsController < ApplicationController
+    include ErrorSerializer
+
     before_action :set_contact, only: [:show, :update, :destroy]
 
     # GET /contacts
@@ -8,6 +10,7 @@ module V1
       per_page = params[:page].try(:[], :size)
       @contacts = Contact.includes(:kind, :phones, :address).page(page_number).per(per_page)
 
+      # Cach-Control --- expires_in 30.seconds, public: true
       render json: @contacts 
       #paginate json: @contacts, include: [:kind, :phones, :address] #include: [:kind, :phones, :address]
     end
@@ -24,7 +27,7 @@ module V1
       if @contact.save
         render json: @contact, include: [:kind, :phones, :address], status: :created, location: @contact
       else
-        render json: @contact.errors, status: :unprocessable_entity
+        render json: ErrorSerializer.serializer(@contact.errors) #@contact.errors, status: :unprocessable_entity
       end
     end
 
